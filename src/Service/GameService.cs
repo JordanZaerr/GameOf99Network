@@ -27,7 +27,7 @@ namespace Service
         /// <param name="cardToDiscard"></param>
         public void DiscardCard(int cardToDiscard)
         {
-            _game.DiscardCard(GetPlayer().Id, cardToDiscard);
+            _game.DiscardCard(GetPlayerId(), cardToDiscard);
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Service
         /// </returns>
         public void DrawCard()
         {
-            _game.DrawCard(GetPlayer().Id);
+            _game.DrawCard(GetPlayerId());
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Service
         /// <param name="card">The card that was played to select the tile.</param>
         public void SelectTile(int tile, int card)
         {
-            _game.SelectTile(GetPlayer().Id, tile, card);
+            _game.SelectTile(GetPlayerId(), tile, card);
         }
 
         public void StartGame()
@@ -82,10 +82,10 @@ namespace Service
             _game.StartGame();
         }
 
-        private Player GetPlayer()
+        private int GetPlayerId()
         {
             var callback = OperationContext.Current.GetCallbackChannel<IGameServiceEvents>();
-            return _players[callback.GetHashCode()];
+            return _players[callback.GetHashCode()].Id;
         }
 
         private Player GetPlayer(int playerId)

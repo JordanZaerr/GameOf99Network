@@ -9,6 +9,9 @@ namespace ServiceTestClient
     {
         private static void Main()
         {
+            //You need admin permissions to listen on a port, 
+            //run visual studio as an admin if you wish to 
+            //run/debug this from within visual studio
             var binding = new WSDualHttpBinding();
             binding.ReceiveTimeout = TimeSpan.FromSeconds(5);
             binding.SendTimeout = TimeSpan.FromSeconds(5);
@@ -16,14 +19,14 @@ namespace ServiceTestClient
             binding.Security.Mode = WSDualHttpSecurityMode.None;
 
             var baseAddress = new Uri("http://localhost:4050/");
-            var address = new Uri("http://localhost:4050/GameService");
+            var serviceAddress = new Uri("http://localhost:4050/GameService");
             var metadataBehavior = new ServiceMetadataBehavior();
             metadataBehavior.HttpGetEnabled = true;
 
-            // Create a ServiceHost for the TestService type and provide the base address. 
+            // Create a ServiceHost for the GameService type and provide the base address. 
             using (var serviceHost = new ServiceHost(typeof (GameService), baseAddress))
             {
-                serviceHost.AddServiceEndpoint(typeof (IGameService), binding, address);
+                serviceHost.AddServiceEndpoint(typeof (IGameService), binding, serviceAddress);
                 serviceHost.Description.Behaviors.Add(metadataBehavior);
 
                 // Open the ServiceHostBase to create listeners and start listening for messages.

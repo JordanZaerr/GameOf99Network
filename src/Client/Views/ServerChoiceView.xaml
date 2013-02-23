@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="Client.Views.ServerChoiceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <StackPanel>
+    <Button x:Name="ConnectToAServer" 
+              Content="Connect To A Server"
+              Margin="30"
+              Height="50"/>
+    <Button x:Name="HostAServer" 
+              Content="Host A Server"
+              Margin="30"
+              Height="50"/>
+
+  </StackPanel>
+</UserControl>

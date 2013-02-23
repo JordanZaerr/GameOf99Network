@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="GameService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IGameService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <cdp:CompositeDuplex xmlns:cdp="http://schemas.microsoft.com/net/2006/06/duplex" />
+        <ow:OneWay xmlns:ow="http://schemas.microsoft.com/ws/2005/05/routing/policy" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:4050/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:4050/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:4050/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Service.Contracts" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IGameService_DiscardCard_InputMessage">
+    <wsdl:part name="parameters" element="tns:DiscardCard" />
+  </wsdl:message>
+  <wsdl:message name="IGameService_DiscardCard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DiscardCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameService_DrawCard_InputMessage">
+    <wsdl:part name="parameters" element="tns:DrawCard" />
+  </wsdl:message>
+  <wsdl:message name="IGameService_DrawCard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DrawCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameService_Join_InputMessage">
+    <wsdl:part name="parameters" element="tns:Join" />
+  </wsdl:message>
+  <wsdl:message name="IGameService_Join_OutputMessage">
+    <wsdl:part name="parameters" element="tns:JoinResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameService_SelectTile_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectTile" />
+  </wsdl:message>
+  <wsdl:message name="IGameService_SelectTile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectTileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameService_StartGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartGame" />
+  </wsdl:message>
+  <wsdl:message name="IGameService_StartGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartGameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameService_PlayerSelectedTile_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:PlayerSelectedTile" />
+  </wsdl:message>
+  <wsdl:message name="IGameService_PlayerJoinedGame_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:PlayerJoinedGame" />
+  </wsdl:message>
+  <wsdl:message name="IGameService_YourTurn_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:YourTurn" />
+  </wsdl:message>
+  <wsdl:message name="IGameService_PlayerWon_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:PlayerWon" />
+  </wsdl:message>
+  <wsdl:message name="IGameService_CardRemoved_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:CardRemoved" />
+  </wsdl:message>
+  <wsdl:message name="IGameService_CardAdded_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:CardAdded" />
+  </wsdl:message>
+  <wsdl:portType msc:usingSession="true" name="IGameService">
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DiscardCard">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameService/DiscardCard" message="tns:IGameService_DiscardCard_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/DiscardCardResponse" message="tns:IGameService_DiscardCard_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DrawCard">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameService/DrawCard" message="tns:IGameService_DrawCard_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/DrawCardResponse" message="tns:IGameService_DrawCard_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Join">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameService/Join" message="tns:IGameService_Join_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/JoinResponse" message="tns:IGameService_Join_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SelectTile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameService/SelectTile" message="tns:IGameService_SelectTile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/SelectTileResponse" message="tns:IGameService_SelectTile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameService/StartGame" message="tns:IGameService_StartGame_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/StartGameResponse" message="tns:IGameService_StartGame_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="PlayerSelectedTile">
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/PlayerSelectedTile" message="tns:IGameService_PlayerSelectedTile_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="PlayerJoinedGame">
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/PlayerJoinedGame" message="tns:IGameService_PlayerJoinedGame_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="YourTurn">
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/YourTurn" message="tns:IGameService_YourTurn_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="PlayerWon">
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/PlayerWon" message="tns:IGameService_PlayerWon_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="CardRemoved">
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/CardRemoved" message="tns:IGameService_CardRemoved_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="CardAdded">
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/CardAdded" message="tns:IGameService_CardAdded_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSDualHttpBinding_IGameService" type="tns:IGameService">
+    <wsp:PolicyReference URI="#WSDualHttpBinding_IGameService_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DiscardCard">
+      <soap12:operation soapAction="http://tempuri.org/IGameService/DiscardCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DrawCard">
+      <soap12:operation soapAction="http://tempuri.org/IGameService/DrawCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Join">
+      <soap12:operation soapAction="http://tempuri.org/IGameService/Join" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectTile">
+      <soap12:operation soapAction="http://tempuri.org/IGameService/SelectTile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StartGame">
+      <soap12:operation soapAction="http://tempuri.org/IGameService/StartGame" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PlayerSelectedTile">
+      <soap12:operation soapAction="http://tempuri.org/IGameService/PlayerSelectedTile" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PlayerJoinedGame">
+      <soap12:operation soapAction="http://tempuri.org/IGameService/PlayerJoinedGame" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="YourTurn">
+      <soap12:operation soapAction="http://tempuri.org/IGameService/YourTurn" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PlayerWon">
+      <soap12:operation soapAction="http://tempuri.org/IGameService/PlayerWon" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CardRemoved">
+      <soap12:operation soapAction="http://tempuri.org/IGameService/CardRemoved" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CardAdded">
+      <soap12:operation soapAction="http://tempuri.org/IGameService/CardAdded" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GameService">
+    <wsdl:port name="WSDualHttpBinding_IGameService" binding="tns:WSDualHttpBinding_IGameService">
+      <soap12:address location="http://localhost:4050/GameService" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://localhost:4050/GameService</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

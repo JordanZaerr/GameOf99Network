@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="Client.Views.HostAServerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             HorizontalAlignment="Center"
+             VerticalAlignment="Center"
+             MinWidth="150"
+             Margin="30">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+    <TextBlock Text="Player Name:"
+               Margin="5,5,0,0"/>
+    <TextBox x:Name="Name" 
+             Grid.Column="1"
+             Margin="5"/>
+    
+    <TextBlock Grid.Row="1" 
+               Margin="5"
+               Text="Player Color:"/>
+    <xctk:ColorPicker Grid.Row="1"
+                      Grid.Column="1"
+                      Margin="5"
+                      SelectedColor="{Binding Color}"
+                      DisplayColorAndName="false"/>
+    
+    <TextBlock Grid.Row="2" 
+               Text="Port:"
+               Margin="5,5,0,0"/>
+    <TextBox x:Name="Port" 
+             Grid.Row="2" 
+             Grid.Column="1"
+             Margin="5"/>
+    
+    <Button x:Name="StartServer"
+            Grid.Row="3"
+            Grid.Column="1"
+            Content="Start Server"/>
+  </Grid>
+</UserControl>
